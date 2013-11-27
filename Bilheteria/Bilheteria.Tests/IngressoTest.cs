@@ -91,5 +91,21 @@ namespace Bilheteria.Tests
 
             Assert.AreEqual(5.1, ingresso.CalcularValor());
         }
+
+        [TestMethod]
+        public void Deve_retornar_valor_com_15_de_desconto_para_crianças_na_terça_feira()
+        {
+            var ingresso = new Ingresso(TipoPessoa.Criança, "terça");
+
+            Assert.AreEqual(4.675, ingresso.CalcularValor());
+        }
+
+        [TestMethod]
+        public void Deve_retornar_valor_com_5_de_desconto_para_estudantes_na_terça_feira()
+        {
+            var ingresso = new Ingresso(TipoPessoa.Estudante, "terça");
+
+            Assert.AreEqual(7.6, ingresso.CalcularValor());
+        }
     }
 }

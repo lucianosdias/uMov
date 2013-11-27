@@ -1,10 +1,17 @@
 ﻿
+using System.Collections.Generic;
 namespace Bilheteria
 {
     public class Ingresso
     {
         private TipoPessoa _tipoPessoa;
         private string _diaDaSemana;
+        private Dictionary<TipoPessoa, double> _valores = new Dictionary<TipoPessoa, double>
+        {
+            { TipoPessoa.Criança, 5.50 },
+            { TipoPessoa.Estudante, 8 },
+            { TipoPessoa.Idoso, 6 }
+        };
 
         public Ingresso(TipoPessoa tipoPessoa)
         {
@@ -19,15 +26,20 @@ namespace Bilheteria
 
         public double CalcularValor()
         {
-            if (_tipoPessoa == TipoPessoa.Idoso && _diaDaSemana == "terça")
-                return 5.1;
-            else if (_tipoPessoa == TipoPessoa.Idoso)
-                return 5.4;
+            if (_diaDaSemana == "terça")
+            {
+                if (_tipoPessoa != TipoPessoa.Estudante)
+                    return this.Calcular(_valores[_tipoPessoa], 15);
 
-            if (_tipoPessoa == TipoPessoa.Estudante)
-                return 7.2;
+                return this.Calcular(_valores[_tipoPessoa], 5);
+            }
 
-            return 4.95;
+            return this.Calcular(_valores[_tipoPessoa], 10);
+        }
+
+        private double Calcular(double valor, int desconto)
+        {
+            return valor - (valor / 100 * desconto);
         }
     }
 }
