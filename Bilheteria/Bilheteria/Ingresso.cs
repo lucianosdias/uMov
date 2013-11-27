@@ -39,6 +39,8 @@ namespace Bilheteria
                         return this.Calcular(_valores[_tipoPessoa], 50);
 
                     return this.Calcular(_valores[_tipoPessoa], 40);
+                case DiaDaSemana.Quinta:
+                    return this.Calcular(_valores[_tipoPessoa], 30);
             }
 
             return this.Calcular(_valores[_tipoPessoa], 0);
