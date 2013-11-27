@@ -14,24 +14,24 @@ namespace Bilheteria.Tests
 
         Segunda-Feira: 
             - 10% para todos(crianças, idosos, estudantes)
-         * deve retornar valor com 10 de desconto para crianças na segunda feira -> 4.95
-         * deve retornar valor com 10 de desconto para idosos na segunda feira -> 5.4
-         * deve retornar valor com 10 de desconto para estudantes na segunda feira -> 7.2
+         * deve retornar valor com 10 de desconto para crianças na segunda feira -> 4.95 (OK)
+         * deve retornar valor com 10 de desconto para idosos na segunda feira -> 5.4 (OK)
+         * deve retornar valor com 10 de desconto para estudantes na segunda feira -> 7.2 (OK)
 
         Terça-Feira:
             - 15% idosos e crianças;
             - 5% estudantes;
-         * deve retornar valor com 15 de desconto para idosos na terça feira -> 5.1
-         * deve retornar valor com 15 de desconto para crianças na terça feira -> 4.675
-         * deve retornar valor com 5 de desconto para estudantes na terça feira -> 7.6
+         * deve retornar valor com 15 de desconto para idosos na terça feira -> 5.1 (OK)
+         * deve retornar valor com 15 de desconto para crianças na terça feira -> 4.675 (OK)
+         * deve retornar valor com 5 de desconto para estudantes na terça feira -> 7.6 (OK)
 
         Quarta-Feira:
             - 40% idosos
             - 30% crianças
             - 50% estudantes
-         * deve retornar valor com 40 de desconto para idosos na quarta feira
-         * deve retornar valor com 30 de desconto para crianças na quarta feira
-         * deve retornar valor com 50 de desconto para estudantes na quarta feira
+         * deve retornar valor com 40 de desconto para idosos na quarta feira -> 3.6
+         * deve retornar valor com 30 de desconto para crianças na quarta feira -> 3.85
+         * deve retornar valor com 50 de desconto para estudantes na quarta feira -> 4
 
         Quinta-Feira
             - 30% idosos e estudantes
@@ -106,6 +106,14 @@ namespace Bilheteria.Tests
             var ingresso = new Ingresso(TipoPessoa.Estudante, "terça");
 
             Assert.AreEqual(7.6, ingresso.CalcularValor());
+        }
+
+        [TestMethod]
+        public void Deve_retornar_valor_com_40_de_desconto_para_idosos_na_quarta_feira()
+        {
+            var ingresso = new Ingresso(TipoPessoa.Idoso, "quarta");
+
+            Assert.AreEqual(3.6, ingresso.CalcularValor());
         }
     }
 }

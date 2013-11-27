@@ -33,6 +33,10 @@ namespace Bilheteria
 
                 return this.Calcular(_valores[_tipoPessoa], 5);
             }
+            else if (_diaDaSemana == "quarta" && _tipoPessoa == TipoPessoa.Idoso)
+            {
+                return 3.6;
+            }
 
             return this.Calcular(_valores[_tipoPessoa], 10);
         }
