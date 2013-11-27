@@ -14,9 +14,9 @@ namespace Bilheteria.Tests
 
         Segunda-Feira: 
             - 10% para todos(crianças, idosos, estudantes)
-         * deve retornar valor com 10 de desconto para crianças na segunda feira
-         * deve retornar valor com 10 de desconto para idosos na segunda feira
-         * deve retornar valor com 10 de desconto para estudantes na segunda feira
+         * deve retornar valor com 10 de desconto para crianças na segunda feira -> 4.95
+         * deve retornar valor com 10 de desconto para idosos na segunda feira -> 5.4
+         * deve retornar valor com 10 de desconto para estudantes na segunda feira -> 7.2
 
         Terça-Feira:
             - 15% idosos e crianças;
@@ -59,5 +59,13 @@ namespace Bilheteria.Tests
 
         OBS2.: Descontos não são cumulativos.         
          */
+
+        [TestMethod]
+        public void Deve_retornar_valor_com_10_de_desconto_para_crianças_na_segunda_feira()
+        {
+            var ingresso = new Ingresso();
+
+            Assert.AreEqual(4.95, ingresso.CalcularValor());
+        }
     }
 }
