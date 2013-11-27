@@ -35,9 +35,9 @@ namespace Bilheteria.Tests
 
         Quinta-Feira
             - 30% idosos e estudantes
-         * deve retornar valor com 30 de desconto para idosos na quinta feira -> 4.2
-         * deve retornar valor com 30 de desconto para estudantes na quinta feira -> 5.6
-         * deve retornar valor sem desconto para crianças na quinta feira -> 5.50
+         * deve retornar valor com 30 de desconto para idosos na quinta feira -> 4.2 (OK)
+         * deve retornar valor com 30 de desconto para estudantes na quinta feira -> 5.6 (OK)
+         * deve retornar valor sem desconto para crianças na quinta feira -> 5.50 (OK)
 
         Sexta-Feira
             - 11% crianças
@@ -148,8 +148,12 @@ namespace Bilheteria.Tests
             Assert.AreEqual(5.6, ingresso.CalcularValor());
         }
 
-        
-        // * deve retornar valor com 30 de desconto para estudantes na quinta feira -> 5.6
-        // * deve retornar valor sem desconto para crianças na quinta feira -> 5.50
+        [TestMethod]
+        public void Deve_retornar_valor_sem_desconto_para_crianças_na_quinta_feira()
+        {
+            var ingresso = new Ingresso(TipoPessoa.Criança, DiaDaSemana.Quinta);
+
+            Assert.AreEqual(5.5, ingresso.CalcularValor());
+        }
     }
 }

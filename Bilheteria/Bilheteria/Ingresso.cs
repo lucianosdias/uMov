@@ -40,7 +40,10 @@ namespace Bilheteria
 
                     return this.Calcular(_valores[_tipoPessoa], 40);
                 case DiaDaSemana.Quinta:
-                    return this.Calcular(_valores[_tipoPessoa], 30);
+                    if (_tipoPessoa != TipoPessoa.Criança)
+                        return this.Calcular(_valores[_tipoPessoa], 30);
+
+                    break;
             }
 
             return this.Calcular(_valores[_tipoPessoa], 0);
