@@ -140,7 +140,15 @@ namespace Bilheteria.Tests
             Assert.AreEqual(4.2, ingresso.CalcularValor());
         }
 
-        //* deve retornar valor com 30 de desconto para idosos na quinta feira -> 4.2
+        [TestMethod]
+        public void Deve_retornar_valor_com_30_de_desconto_para_estudantes_na_quinta_feira()
+        {
+            var ingresso = new Ingresso(TipoPessoa.Estudante, DiaDaSemana.Quinta);
+
+            Assert.AreEqual(5.6, ingresso.CalcularValor());
+        }
+
+        
         // * deve retornar valor com 30 de desconto para estudantes na quinta feira -> 5.6
         // * deve retornar valor sem desconto para crianças na quinta feira -> 5.50
     }
