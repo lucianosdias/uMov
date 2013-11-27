@@ -21,9 +21,9 @@ namespace Bilheteria.Tests
         Terça-Feira:
             - 15% idosos e crianças;
             - 5% estudantes;
-         * deve retornar valor com 15 de desconto para idosos na terça feira
-         * deve retornar valor com 15 de desconto para crianças na terça feira
-         * deve retornar valor com 5 de desconto para estudantes na terça feira
+         * deve retornar valor com 15 de desconto para idosos na terça feira -> 5.1
+         * deve retornar valor com 15 de desconto para crianças na terça feira -> 4.675
+         * deve retornar valor com 5 de desconto para estudantes na terça feira -> 7.6
 
         Quarta-Feira:
             - 40% idosos
@@ -82,6 +82,14 @@ namespace Bilheteria.Tests
             var ingresso = new Ingresso(TipoPessoa.Estudante);
 
             Assert.AreEqual(7.2, ingresso.CalcularValor());
+        }
+
+        [TestMethod]
+        public void Deve_retornar_valor_com_15_de_desconto_para_idosos_na_terça_feira()
+        {
+            var ingresso = new Ingresso(TipoPessoa.Idoso, "terça");
+
+            Assert.AreEqual(5.1, ingresso.CalcularValor());
         }
     }
 }
