@@ -63,9 +63,17 @@ namespace Bilheteria.Tests
         [TestMethod]
         public void Deve_retornar_valor_com_10_de_desconto_para_crianças_na_segunda_feira()
         {
-            var ingresso = new Ingresso();
+            var ingresso = new Ingresso("criança");
 
             Assert.AreEqual(4.95, ingresso.CalcularValor());
+        }
+
+        [TestMethod]
+        public void Deve_retornar_valor_com_10_de_desconto_para_idosos_na_segunda_feira()
+        {
+            var ingresso = new Ingresso("idoso");
+
+            Assert.AreEqual(5.4, ingresso.CalcularValor());
         }
     }
 }
