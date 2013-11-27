@@ -63,7 +63,7 @@ namespace Bilheteria.Tests
         [TestMethod]
         public void Deve_retornar_valor_com_10_de_desconto_para_crianças_na_segunda_feira()
         {
-            var ingresso = new Ingresso(TipoPessoa.Criança);
+            var ingresso = new Ingresso(TipoPessoa.Criança, DiaDaSemana.Segunda);
 
             Assert.AreEqual(4.95, ingresso.CalcularValor());
         }
@@ -71,7 +71,7 @@ namespace Bilheteria.Tests
         [TestMethod]
         public void Deve_retornar_valor_com_10_de_desconto_para_idosos_na_segunda_feira()
         {
-            var ingresso = new Ingresso(TipoPessoa.Idoso);
+            var ingresso = new Ingresso(TipoPessoa.Idoso, DiaDaSemana.Segunda);
 
             Assert.AreEqual(5.4, ingresso.CalcularValor());
         }
@@ -79,7 +79,7 @@ namespace Bilheteria.Tests
         [TestMethod]
         public void Deve_retornar_valor_com_10_de_desconto_para_estudantes_na_segunda_feira()
         {
-            var ingresso = new Ingresso(TipoPessoa.Estudante);
+            var ingresso = new Ingresso(TipoPessoa.Estudante, DiaDaSemana.Segunda);
 
             Assert.AreEqual(7.2, ingresso.CalcularValor());
         }
@@ -87,7 +87,7 @@ namespace Bilheteria.Tests
         [TestMethod]
         public void Deve_retornar_valor_com_15_de_desconto_para_idosos_na_terça_feira()
         {
-            var ingresso = new Ingresso(TipoPessoa.Idoso, "terça");
+            var ingresso = new Ingresso(TipoPessoa.Idoso, DiaDaSemana.Terça);
 
             Assert.AreEqual(5.1, ingresso.CalcularValor());
         }
@@ -95,7 +95,7 @@ namespace Bilheteria.Tests
         [TestMethod]
         public void Deve_retornar_valor_com_15_de_desconto_para_crianças_na_terça_feira()
         {
-            var ingresso = new Ingresso(TipoPessoa.Criança, "terça");
+            var ingresso = new Ingresso(TipoPessoa.Criança, DiaDaSemana.Terça);
 
             Assert.AreEqual(4.675, ingresso.CalcularValor());
         }
@@ -103,7 +103,7 @@ namespace Bilheteria.Tests
         [TestMethod]
         public void Deve_retornar_valor_com_5_de_desconto_para_estudantes_na_terça_feira()
         {
-            var ingresso = new Ingresso(TipoPessoa.Estudante, "terça");
+            var ingresso = new Ingresso(TipoPessoa.Estudante, DiaDaSemana.Terça);
 
             Assert.AreEqual(7.6, ingresso.CalcularValor());
         }
@@ -111,7 +111,7 @@ namespace Bilheteria.Tests
         [TestMethod]
         public void Deve_retornar_valor_com_40_de_desconto_para_idosos_na_quarta_feira()
         {
-            var ingresso = new Ingresso(TipoPessoa.Idoso, "quarta");
+            var ingresso = new Ingresso(TipoPessoa.Idoso, DiaDaSemana.Quarta);
 
             Assert.AreEqual(3.6, ingresso.CalcularValor());
         }

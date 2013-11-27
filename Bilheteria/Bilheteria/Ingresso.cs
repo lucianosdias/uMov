@@ -5,7 +5,7 @@ namespace Bilheteria
     public class Ingresso
     {
         private TipoPessoa _tipoPessoa;
-        private string _diaDaSemana;
+        private DiaDaSemana _diaDaSemana;
         private Dictionary<TipoPessoa, double> _valores = new Dictionary<TipoPessoa, double>
         {
             { TipoPessoa.Criança, 5.50 },
@@ -13,12 +13,7 @@ namespace Bilheteria
             { TipoPessoa.Idoso, 6 }
         };
 
-        public Ingresso(TipoPessoa tipoPessoa)
-        {
-            this._tipoPessoa = tipoPessoa;
-        }
-
-        public Ingresso(TipoPessoa tipoPessoa, string diaDaSemana)
+        public Ingresso(TipoPessoa tipoPessoa, DiaDaSemana diaDaSemana)
         {
             this._tipoPessoa = tipoPessoa;
             this._diaDaSemana = diaDaSemana;
@@ -26,16 +21,16 @@ namespace Bilheteria
 
         public double CalcularValor()
         {
-            if (_diaDaSemana == "terça")
+            if (_diaDaSemana == DiaDaSemana.Terça)
             {
                 if (_tipoPessoa != TipoPessoa.Estudante)
                     return this.Calcular(_valores[_tipoPessoa], 15);
 
                 return this.Calcular(_valores[_tipoPessoa], 5);
             }
-            else if (_diaDaSemana == "quarta" && _tipoPessoa == TipoPessoa.Idoso)
+            else if (_diaDaSemana == DiaDaSemana.Quarta && _tipoPessoa == TipoPessoa.Idoso)
             {
-                return 3.6;
+                return this.Calcular(_valores[_tipoPessoa], 40);
             }
 
             return this.Calcular(_valores[_tipoPessoa], 10);
