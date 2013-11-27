@@ -21,19 +21,27 @@ namespace Bilheteria
 
         public double CalcularValor()
         {
-            if (_diaDaSemana == DiaDaSemana.Terça)
+            switch (_diaDaSemana)
             {
-                if (_tipoPessoa != TipoPessoa.Estudante)
-                    return this.Calcular(_valores[_tipoPessoa], 15);
+                case DiaDaSemana.Segunda:
+                    return this.Calcular(_valores[_tipoPessoa], 10);
 
-                return this.Calcular(_valores[_tipoPessoa], 5);
-            }
-            else if (_diaDaSemana == DiaDaSemana.Quarta && _tipoPessoa == TipoPessoa.Idoso)
-            {
-                return this.Calcular(_valores[_tipoPessoa], 40);
+                case DiaDaSemana.Terça:
+                    if (_tipoPessoa != TipoPessoa.Estudante)
+                        return this.Calcular(_valores[_tipoPessoa], 15);
+
+                    return this.Calcular(_valores[_tipoPessoa], 5);
+                case DiaDaSemana.Quarta:
+                    if (_tipoPessoa == TipoPessoa.Criança)
+                        return this.Calcular(_valores[_tipoPessoa], 30);
+
+                    if (_tipoPessoa == TipoPessoa.Estudante)
+                        return this.Calcular(_valores[_tipoPessoa], 50);
+
+                    return this.Calcular(_valores[_tipoPessoa], 40);
             }
 
-            return this.Calcular(_valores[_tipoPessoa], 10);
+            return this.Calcular(_valores[_tipoPessoa], 0);
         }
 
         private double Calcular(double valor, int desconto)
