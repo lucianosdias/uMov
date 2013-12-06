@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CalculadoraDeIngresso.cs" />
     <Compile Include="DiaDaSemana.cs" />
     <Compile Include="Ingresso.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

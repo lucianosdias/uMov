@@ -41,9 +41,9 @@ namespace Bilheteria.Tests
 
         Sexta-Feira
             - 11% crianças
-         * deve retornar valor com 11 de desconto para crianças na sexta feira
-         * deve retornar valor sem desconto para idosos na sexta feira
-         * deve retornar valor sem desconto para estudantes na sexta feira
+         * deve retornar valor com 11 de desconto para crianças na sexta feira (OK)
+         * deve retornar valor sem desconto para idosos na sexta feira (OK)
+         * deve retornar valor sem desconto para estudantes na sexta feira (OK)
 
         Domingo/Sábados/Feriados
             - 5% Idosos
@@ -58,6 +58,10 @@ namespace Bilheteria.Tests
          * deve retornar valor sem desconto para estudantes com documento no sabado e domingo
 
         OBS2.: Descontos não são cumulativos.         
+         
+        Acho que mudaria a classe ingresso para que o calculo do valor seja interno e quem consome apenas use propriedade Valor.
+        Terminaria os testes.
+        Buscaria também uma forma de organizar os valores descontos por pessoa e dia para não ter que passar "na mão" cada vez que for calcular.
          */
 
         [TestMethod]
@@ -65,7 +69,9 @@ namespace Bilheteria.Tests
         {
             var ingresso = new Ingresso(TipoPessoa.Criança, DiaDaSemana.Segunda);
 
-            Assert.AreEqual(4.95, ingresso.CalcularValor());
+            var calculadora = new CalculadoraDeIngresso(ingresso);
+
+            Assert.AreEqual(4.95, calculadora.CalcularValor());
         }
 
         [TestMethod]
@@ -73,7 +79,9 @@ namespace Bilheteria.Tests
         {
             var ingresso = new Ingresso(TipoPessoa.Idoso, DiaDaSemana.Segunda);
 
-            Assert.AreEqual(5.4, ingresso.CalcularValor());
+            var calculadora = new CalculadoraDeIngresso(ingresso);
+
+            Assert.AreEqual(5.4, calculadora.CalcularValor());
         }
 
         [TestMethod]
@@ -81,7 +89,9 @@ namespace Bilheteria.Tests
         {
             var ingresso = new Ingresso(TipoPessoa.Estudante, DiaDaSemana.Segunda);
 
-            Assert.AreEqual(7.2, ingresso.CalcularValor());
+            var calculadora = new CalculadoraDeIngresso(ingresso);
+
+            Assert.AreEqual(7.2, calculadora.CalcularValor());
         }
 
         [TestMethod]
@@ -89,7 +99,9 @@ namespace Bilheteria.Tests
         {
             var ingresso = new Ingresso(TipoPessoa.Idoso, DiaDaSemana.Terça);
 
-            Assert.AreEqual(5.1, ingresso.CalcularValor());
+            var calculadora = new CalculadoraDeIngresso(ingresso);
+
+            Assert.AreEqual(5.1, calculadora.CalcularValor());
         }
 
         [TestMethod]
@@ -97,7 +109,9 @@ namespace Bilheteria.Tests
         {
             var ingresso = new Ingresso(TipoPessoa.Criança, DiaDaSemana.Terça);
 
-            Assert.AreEqual(4.675, ingresso.CalcularValor());
+            var calculadora = new CalculadoraDeIngresso(ingresso);
+
+            Assert.AreEqual(4.675, calculadora.CalcularValor());
         }
 
         [TestMethod]
@@ -105,7 +119,9 @@ namespace Bilheteria.Tests
         {
             var ingresso = new Ingresso(TipoPessoa.Estudante, DiaDaSemana.Terça);
 
-            Assert.AreEqual(7.6, ingresso.CalcularValor());
+            var calculadora = new CalculadoraDeIngresso(ingresso);
+
+            Assert.AreEqual(7.6, calculadora.CalcularValor());
         }
 
         [TestMethod]
@@ -113,7 +129,9 @@ namespace Bilheteria.Tests
         {
             var ingresso = new Ingresso(TipoPessoa.Idoso, DiaDaSemana.Quarta);
 
-            Assert.AreEqual(3.6, ingresso.CalcularValor());
+            var calculadora = new CalculadoraDeIngresso(ingresso);
+
+            Assert.AreEqual(3.6, calculadora.CalcularValor());
         }
 
         [TestMethod]
@@ -121,7 +139,9 @@ namespace Bilheteria.Tests
         {
             var ingresso = new Ingresso(TipoPessoa.Criança, DiaDaSemana.Quarta);
 
-            Assert.AreEqual(3.85, ingresso.CalcularValor());
+            var calculadora = new CalculadoraDeIngresso(ingresso);
+
+            Assert.AreEqual(3.85, calculadora.CalcularValor());
         }
 
         [TestMethod]
@@ -129,7 +149,9 @@ namespace Bilheteria.Tests
         {
             var ingresso = new Ingresso(TipoPessoa.Estudante, DiaDaSemana.Quarta);
 
-            Assert.AreEqual(4, ingresso.CalcularValor());
+            var calculadora = new CalculadoraDeIngresso(ingresso);
+
+            Assert.AreEqual(4, calculadora.CalcularValor());            
         }
 
         [TestMethod]
@@ -137,7 +159,9 @@ namespace Bilheteria.Tests
         {
             var ingresso = new Ingresso(TipoPessoa.Idoso, DiaDaSemana.Quinta);
 
-            Assert.AreEqual(4.2, ingresso.CalcularValor());
+            var calculadora = new CalculadoraDeIngresso(ingresso);
+
+            Assert.AreEqual(4.2, calculadora.CalcularValor());
         }
 
         [TestMethod]
@@ -145,7 +169,9 @@ namespace Bilheteria.Tests
         {
             var ingresso = new Ingresso(TipoPessoa.Estudante, DiaDaSemana.Quinta);
 
-            Assert.AreEqual(5.6, ingresso.CalcularValor());
+            var calculadora = new CalculadoraDeIngresso(ingresso);
+
+            Assert.AreEqual(5.6, calculadora.CalcularValor());
         }
 
         [TestMethod]
@@ -153,7 +179,39 @@ namespace Bilheteria.Tests
         {
             var ingresso = new Ingresso(TipoPessoa.Criança, DiaDaSemana.Quinta);
 
-            Assert.AreEqual(5.5, ingresso.CalcularValor());
+            var calculadora = new CalculadoraDeIngresso(ingresso);
+
+            Assert.AreEqual(5.5, calculadora.CalcularValor());
+        }
+
+        [TestMethod]
+        public void Deve_retornar_valor_com_11_de_desconto_para_crianças_na_sexta_feira()
+        {
+            var ingresso = new Ingresso(TipoPessoa.Criança, DiaDaSemana.Sexta);
+
+            var calculadora = new CalculadoraDeIngresso(ingresso);
+
+            Assert.AreEqual(4.895, calculadora.CalcularValor());
+        }
+
+        [TestMethod]
+        public void Deve_retornar_valor_sem_desconto_para_idosos_na_sexta_feira()
+        {
+            var ingresso = new Ingresso(TipoPessoa.Idoso, DiaDaSemana.Sexta);
+
+            var calculadora = new CalculadoraDeIngresso(ingresso);
+
+            Assert.AreEqual(6, calculadora.CalcularValor());
+        }
+
+        [TestMethod]
+        public void Deve_retornar_valor_sem_desconto_para_estudantes_na_sexta_feira()
+        {
+            var ingresso = new Ingresso(TipoPessoa.Estudante, DiaDaSemana.Sexta);
+
+            var calculadora = new CalculadoraDeIngresso(ingresso);
+
+            Assert.AreEqual(8, calculadora.CalcularValor());
         }
     }
 }
