@@ -28,10 +28,18 @@ namespace Bilheteria
             get { return _valores[this._tipoPessoa]; }
         }
 
-        public Ingresso(TipoPessoa tipoPessoa, DiaDaSemana diaDaSemana)
+        private bool _apresentouDocumento;
+        public bool ApresentouDocumento
+        {
+            get { return _apresentouDocumento; }
+            set { _apresentouDocumento = value; }
+        }
+
+        public Ingresso(TipoPessoa tipoPessoa, DiaDaSemana diaDaSemana, bool apresentouDocumento = false)
         {
             this._tipoPessoa = tipoPessoa;
             this._diaDaSemana = diaDaSemana;
+            this._apresentouDocumento = apresentouDocumento;
         }
     }
 }

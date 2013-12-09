@@ -13,6 +13,7 @@ namespace Bilheteria
         Quinta,
         Sexta,
         Sabado,
-        Domingo
+        Domingo,
+        Feriado
     }
 }

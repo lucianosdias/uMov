@@ -47,9 +47,9 @@ namespace Bilheteria.Tests
 
         Domingo/Sábados/Feriados
             - 5% Idosos
-         * deve retornar valor com 5 de desconto para idosos no sabado/domingo/feriado
-         * deve retornar valor sem desconto para crianças no sabado/domingo/feriado
-         * deve retornar valor sem desconto para estudantes no sabado/domingo/feriado
+         * deve retornar valor com 5 de desconto para idosos no sabado/domingo/feriado (OK)
+         * deve retornar valor sem desconto para crianças no sabado/domingo/feriado (OK)
+         * deve retornar valor sem desconto para estudantes no sabado/domingo/feriado (OK)
 
         OBS1.: Todo estudante mediante apresentação da carteirinha de estudante 
             possui para todos os dias da semana, exceto finais de semana, 
@@ -151,7 +151,7 @@ namespace Bilheteria.Tests
 
             var calculadora = new CalculadoraDeIngresso(ingresso);
 
-            Assert.AreEqual(4, calculadora.CalcularValor());            
+            Assert.AreEqual(4, calculadora.CalcularValor());
         }
 
         [TestMethod]
@@ -213,5 +213,56 @@ namespace Bilheteria.Tests
 
             Assert.AreEqual(8, calculadora.CalcularValor());
         }
+
+
+        [TestMethod]
+        public void Deve_retornar_valor_com_5_de_desconto_para_idosos_final_de_semana_e_feriados()
+        {
+            var ingresso = new Ingresso(TipoPessoa.Idoso, DiaDaSemana.Feriado);
+
+            var calculadora = new CalculadoraDeIngresso(ingresso);
+
+            Assert.AreEqual(5.7, calculadora.CalcularValor());
+        }
+
+        [TestMethod]
+        public void Deve_retornar_valor_sem_desconto_para_estudantes_final_de_semana_e_feriados()
+        {
+            var ingresso = new Ingresso(TipoPessoa.Estudante, DiaDaSemana.Sabado);
+
+            var calculadora = new CalculadoraDeIngresso(ingresso);
+
+            Assert.AreEqual(8, calculadora.CalcularValor());
+        }
+
+        [TestMethod]
+        public void Deve_retornar_valor_sem_desconto_para_crianças_final_de_semana_e_feriados()
+        {
+            var ingresso = new Ingresso(TipoPessoa.Criança, DiaDaSemana.Domingo);
+
+            var calculadora = new CalculadoraDeIngresso(ingresso);
+
+            Assert.AreEqual(5.5, calculadora.CalcularValor());
+        }
+        
+        [TestMethod]
+        public void Deve_retornar_valor_com_35_de_desconto_para_estudantes_com_documento_de_segunda_a_sexta()
+        {
+            var ingresso = new Ingresso(TipoPessoa.Estudante, DiaDaSemana.Sexta, true);
+
+            var calculadora = new CalculadoraDeIngresso(ingresso);
+
+            Assert.AreEqual(5.2, calculadora.CalcularValor());
+        }
+        [TestMethod]
+        public void Deve_retornar_valor_sem_desconto_para_estudantes_com_documento_final_de_semana_e_feriados()
+        {
+            var ingresso = new Ingresso(TipoPessoa.Estudante, DiaDaSemana.Sabado, true);
+
+            var calculadora = new CalculadoraDeIngresso(ingresso);
+
+            Assert.AreEqual(8, calculadora.CalcularValor());
+        }
+
     }
 }

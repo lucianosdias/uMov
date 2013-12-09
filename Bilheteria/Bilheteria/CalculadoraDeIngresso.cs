@@ -17,6 +17,9 @@ namespace Bilheteria
 
         public double CalcularValor()
         {
+            if (ingresso.ApresentouDocumento && ingresso.TipoPessoa == TipoPessoa.Estudante && (int)ingresso.DiaDaSemana <= 4)
+                return this.Calcular(ingresso.ValorUnitario, 35);
+
             switch (ingresso.DiaDaSemana)
             {
                 case DiaDaSemana.Segunda:
@@ -44,6 +47,13 @@ namespace Bilheteria
                     if (ingresso.TipoPessoa == TipoPessoa.Criança)
                         return this.Calcular(ingresso.ValorUnitario, 11);
                     break;
+
+                case DiaDaSemana.Sabado:
+                case DiaDaSemana.Domingo:
+                case DiaDaSemana.Feriado:
+                    if (ingresso.TipoPessoa == TipoPessoa.Idoso)
+                        return 5.70;
+                    break;
             }
 
             return this.Calcular(ingresso.ValorUnitario, 0);
@@ -51,7 +61,8 @@ namespace Bilheteria
 
         private double Calcular(double valor, int desconto)
         {
-            return valor - (valor / 100 * desconto);
+            return Math.Round(valor - (valor / 100 * desconto), 3);
+
         }
     }
 }
